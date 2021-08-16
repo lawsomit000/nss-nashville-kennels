@@ -25,6 +25,12 @@ export const AnimalProvider = (props) => {
         })
             .then(response => response.json())
     }
+    const releaseAnimal = animalId => {
+        return fetch(`http://localhost:8088/animals/${animalId}`, {
+            method: "DELETE"
+        })
+            .then(getAnimals)
+    }
 
     <AnimalProvider>
         <Route exact path="/animals/detail/:animalId(\d+)">
@@ -40,7 +46,7 @@ export const AnimalProvider = (props) => {
     */
     return (
         <AnimalContext.Provider value={{
-            animals, getAnimals, addAnimal
+            animals, getAnimals, addAnimal, releaseAnimal
         }}>
             {props.children}
         </AnimalContext.Provider>
