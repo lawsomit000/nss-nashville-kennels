@@ -30,7 +30,23 @@ export const AnimalProvider = (props) => {
             method: "DELETE"
         })
             .then(getAnimals)
-    }
+            }     
+            
+    const updateAnimal = animal => {
+                return fetch(`http://localhost:8088/animals/${animal.id}`, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(animal)
+                })
+                  .then(getAnimals)
+              }        
+
+     const getAnimalById = (animalId) => {
+                return fetch(`http://localhost:8088/animals/${animalId}`)
+                .then(res => res.json())
+            }         
 
     <AnimalProvider>
         <Route exact path="/animals/detail/:animalId(\d+)">
@@ -46,7 +62,7 @@ export const AnimalProvider = (props) => {
     */
     return (
         <AnimalContext.Provider value={{
-            animals, getAnimals, addAnimal, releaseAnimal
+            animals, getAnimals, addAnimal, releaseAnimal, updateAnimal, getAnimalById
         }}>
             {props.children}
         </AnimalContext.Provider>

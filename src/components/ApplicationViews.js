@@ -35,12 +35,18 @@ export const ApplicationViews = () => {
                         </Route>
                     </OwnerProvider>
                 </LocationProvider>
-                
+
                 <Route exact path="/animals/detail/:animalId(\d+)">
                     <AnimalDetail />
                 </Route>
+                <LocationProvider>
+                    <OwnerProvider>
+                        <Route path="/animals/edit/:animalId(\d+)">
+                            <AnimalForm />
+                        </Route>
+                    </OwnerProvider>
+                </LocationProvider>
             </AnimalProvider>
-           
 
             <EmployeeProvider>
                 <Route path="/employees">
@@ -56,7 +62,7 @@ export const ApplicationViews = () => {
             </EmployeeProvider>
 
             <OwnerProvider>
-                <Route path="/customers">x
+                <Route path="/customers">
                     <OwnerList />
                 </Route>
             </OwnerProvider>
